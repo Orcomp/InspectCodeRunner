@@ -7,6 +7,7 @@
 
 namespace InspectCodeRunner.Wpf.Services
 {
+    using System;
     using System.Threading.Tasks;
     using System.Windows;
     using Catel;
@@ -49,9 +50,22 @@ namespace InspectCodeRunner.Wpf.Services
 
         public async Task Run(object dataContext)
         {
+            ResetLog();
+
             Log.Info("Run...");
             Log.Info("Finished");
         }
+        
+        private void ResetLog()
+        {
+            var logControlService = _serviceLocator.ResolveType<ILogControlService>();
+
+            Application.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                logControlService.Clear();
+            }));
+        }
+
 
         public Size GetInitialWindowSize()
         {

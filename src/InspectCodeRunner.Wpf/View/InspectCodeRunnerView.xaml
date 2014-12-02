@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:orchestra="https://github.com/orcomp/orchestra"
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
-    <Grid>
-        <TextBlock Text="Text"/>
-    </Grid>
+    <StackPanel>
+        <orchestra:FilePickerView LabelWidth="100" LabelText="Solution File:" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <orchestra:FilePickerView LabelWidth="100" LabelText="Inspect Runner:" SelectedFile="{Binding InspectRunnerLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <orchestra:DirectoryPickerView LabelWidth="100" LabelText="Output:" SelectedDirectory="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+    </StackPanel>
 </UserControl>

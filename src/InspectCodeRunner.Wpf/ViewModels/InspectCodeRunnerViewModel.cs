@@ -11,5 +11,9 @@ namespace InspectCodeRunner.Wpf.ViewModels
 
     public class InspectCodeRunnerViewModel : ViewModelBase
     {
+
+        public string SolutionFile { get; set; }
+        public string InspectRunnerLocation { get; set; }
+        public string OutputResultDirectory { get; set; }
     }
 }

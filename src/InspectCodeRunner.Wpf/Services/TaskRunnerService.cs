@@ -102,6 +102,10 @@ namespace InspectCodeRunner.Wpf.Services
             {
                 FileName = fileName,
                 Arguments = argumentsString,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true,
+
             };
 
             var workingDirectory = Path.GetDirectoryName(fileName);
@@ -110,7 +114,13 @@ namespace InspectCodeRunner.Wpf.Services
                 processStartInfo.WorkingDirectory = workingDirectory;
             }
 
-            Process.Start(processStartInfo);
+            var process = new Process();
+            process.StartInfo = processStartInfo;
+            process.Start();
+            while (!process.StandardOutput.EndOfStream)
+            {
+                Log.Info(process.StandardOutput.ReadLine());
+            }
         }
 
 

@@ -7,8 +7,16 @@
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
     <StackPanel>
-        <orchestra:FilePickerView LabelWidth="100" LabelText="Solution File:" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-        <orchestra:FilePickerView LabelWidth="100" LabelText="Inspect Runner:" SelectedFile="{Binding InspectRunnerLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <orchestra:FilePickerView LabelWidth="120" LabelText="Solution File" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <orchestra:FilePickerView LabelWidth="120" LabelText="InspectCode.exe path" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="InspectCode attributes"/>
+            <TextBox Grid.Column="1" Text="{Binding InspectCodeParameters}" />
+        </Grid>
         <orchestra:DirectoryPickerView LabelWidth="100" LabelText="Output:" SelectedDirectory="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
     </StackPanel>
 </UserControl>

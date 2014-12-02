@@ -61,6 +61,7 @@
       <HintPath>..\packages\Orchestra.Shell.TaskRunner.2.1.0-unstable0008\lib\net40\Orchestra.Shell.TaskRunner.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO">
       <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
@@ -93,6 +94,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\InspectCodeAppIntegration.cs" />
     <Compile Include="Services\TaskRunnerService.cs" />
     <Compile Include="ViewModels\InspectCodeRunnerViewModel.cs" />
     <Compile Include="View\InspectCodeRunnerView.xaml.cs">

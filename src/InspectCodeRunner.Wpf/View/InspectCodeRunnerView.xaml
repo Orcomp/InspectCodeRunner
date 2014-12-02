@@ -7,16 +7,50 @@
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
     <StackPanel>
-        <orchestra:FilePickerView LabelWidth="120" LabelText="Solution File" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-        <orchestra:FilePickerView LabelWidth="120" LabelText="InspectCode.exe path" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="InspectCode attributes"/>
-            <TextBox Grid.Column="1" Text="{Binding InspectCodeParameters}" />
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Solution File"/>
+            <orchestra:FilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="InspectCode.exe path"/>
+            <orchestra:FilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+            <Label Grid.Row="2" Grid.Column="0">
+                <Label.Content>
+                    <TextBlock TextDecorations="Underline">Run parameters</TextBlock>
+                </Label.Content>
+                <Label.ToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="600">
+  /config : Path to configuration file where parameters are specified (use 'config-create' option to create sample file).<LineBreak /> 
+  /config-create : Write command line parameters to specified file.<LineBreak /> 
+  /output (/o) : Write inspections report to specified file.<LineBreak /> 
+  /no-swea : Disable solution-wide analysis (default: False).<LineBreak /> 
+  /project : Analyze only projects selected by provided wildcards (default: analyze all projects in solution).<LineBreak /> 
+  /profile (/p) : Path to the file to use custom settings from (default: Use R#'s solution shared settings if exists).<LineBreak /> 
+  /no-buildin-settings : Suppress global, solution and project settings profile usage. Alias for /disable-settings-layers:GlobalAll;GlobalPerProduct;SolutionShared;SolutionPersonal;ProjectShared;ProjectPersonal (default: False).<LineBreak /> 
+  /disable-settings-layers (/dsl) : Disable specified settings layers. Possible values: GlobalAll, GlobalPerProduct, SolutionShared, SolutionPersonal, ProjectShared, ProjectPersonal.<LineBreak /> 
+  /caches-home : Path to the directory where produced caches will be stored.<LineBreak /> 
+  /debug (/d) : Show debugging messages (default: False).<LineBreak /> 
+  /help (/h) : Show help and exit.<LineBreak /> 
+  /version (/v) : Show tool version and exit.<LineBreak /> 
+  /eXtensions (/x) : Install and use specified extensions.<LineBreak /> 
+  /properties : MSBuild properties.<LineBreak /> 
+  /dumpIssuesTypes (/it) : Dump issues types (default: False).<LineBreak /> 
+Example:<LineBreak /> 
+  InspectCode.exe /caches-home="C:\Temp\DFCache" /o="report.xml" "C:\src\MySolution.sln"<LineBreak />
+                    </TextBlock>
+                </Label.ToolTip>
+            </Label>
+            <TextBox Margin="12 3 0 3" Grid.Row="2" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Output:"/>
+            <orchestra:DirectoryPickerView Grid.Row="3" Grid.Column="1" LabelWidth="0" SelectedDirectory="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
         </Grid>
-        <orchestra:DirectoryPickerView LabelWidth="100" LabelText="Output:" SelectedDirectory="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
     </StackPanel>
 </UserControl>

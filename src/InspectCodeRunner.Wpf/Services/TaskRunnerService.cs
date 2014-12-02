@@ -70,12 +70,15 @@ namespace InspectCodeRunner.Wpf.Services
         {
             _configurationService.SetValue("InspectCodeLocation", _inspectCodeRunnerSettings.InspectCodeLocation);
             _configurationService.SetValue("InspectCodeParameters", _inspectCodeRunnerSettings.InspectCodeParameters);
+            _configurationService.SetValue("OutputResultDirectory", _inspectCodeRunnerSettings.OutputResultDirectory);
         }
         private void LoadSettings()
         {
             _inspectCodeRunnerSettings.InspectCodeLocation = _configurationService.GetValue<string>("InspectCodeLocation");
             _inspectCodeRunnerSettings.InspectCodeParameters =
                 _configurationService.GetValue<string>("InspectCodeParameters", @"/output=");
+            _inspectCodeRunnerSettings.OutputResultDirectory =
+                _configurationService.GetValue<string>("OutputResultDirectory", @"c:\temp");
         }
 
 

@@ -7,14 +7,10 @@
 
 namespace InspectCodeRunner.Wpf.ViewModels
 {
-    using System.ComponentModel;
     using Catel.MVVM;
 
     public class InspectCodeRunnerViewModel : ViewModelBase
     {
-        public InspectCodeRunnerViewModel()
-        {
-        }
         public string SolutionFile { get; set; }
         public string InspectCodeLocation { get; set; }
 

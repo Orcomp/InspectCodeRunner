@@ -94,7 +94,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\InspectCodeAppIntegration.cs" />
     <Compile Include="Services\TaskRunnerService.cs" />
     <Compile Include="ViewModels\InspectCodeRunnerViewModel.cs" />
     <Compile Include="View\InspectCodeRunnerView.xaml.cs">

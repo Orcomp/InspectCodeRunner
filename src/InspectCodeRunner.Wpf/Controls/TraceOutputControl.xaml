@@ -39,6 +39,11 @@
         </Grid>
 
         <ListView Grid.Row="1" x:Name="logListView" ItemsSource="{Binding TraceEntriesList}">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
             <i:Interaction.Behaviors>
                 <catel:AutoScroll />
                 <catel:KeyPressToCommand Command="{Binding CopyToClipboard}" Key="C" Modifiers="Ctrl" />
@@ -75,18 +80,10 @@
             <ListView.View>
                 <GridView>
                     
-                    <GridViewColumn Header="Time">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Time, StringFormat=G}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
                     <GridViewColumn Width="600">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Message}" FontFamily="Courier New" />
+                                <TextBlock Text="{Binding Message}" FontFamily="Courier New" TextWrapping="Wrap"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

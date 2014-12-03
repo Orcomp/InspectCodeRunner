@@ -7,12 +7,10 @@
 
 namespace InspectCodeRunner.Wpf.View
 {
-    using System.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for InspectCodeRunnerView.xaml
     /// </summary>
-    public partial class InspectCodeRunnerView : UserControl
+    public partial class InspectCodeRunnerView : Catel.Windows.Controls.UserControl
     {
         #region Constructors
         public InspectCodeRunnerView()

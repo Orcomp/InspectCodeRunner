@@ -11,8 +11,6 @@ namespace InspectCodeRunner.Wpf
     using System.Windows;
     using System.Windows.Markup;
     using Catel.IoC;
-    using Orchestra.Services;
-    using Orchestra.Views;
     using Services;
 
     /// <summary>
@@ -30,13 +28,9 @@ namespace InspectCodeRunner.Wpf
         #region Methods
         protected override void OnStartup(StartupEventArgs e)
         {
-
             var serviceLocator = ServiceLocator.Default;
+            serviceLocator.RegisterType<IInspectCodeRunnerService, InspectCodeRunnerService>();
 
-            serviceLocator.RegisterType<ITaskRunnerService, TaskRunnerService>();
-
-            var shellService = serviceLocator.ResolveType<IShellService>();
-            shellService.Create<ShellWindow>();
             base.OnStartup(e);
         }
         #endregion

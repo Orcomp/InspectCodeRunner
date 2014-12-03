@@ -97,8 +97,11 @@
     <Compile Include="Controls\TraceOutputControl.xaml.cs">
       <DependentUpon>TraceOutputControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\interfaces\IInspectCodeRunnerService.cs" />
+    <Compile Include="Services\InspectCodeRunnerService.cs" />
+    <Compile Include="Services\LogControlService.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\TraceOutputControlViewModel.cs" />
-    <Compile Include="Services\TaskRunnerService.cs" />
     <Compile Include="ViewModels\InspectCodeRunnerViewModel.cs" />
     <Compile Include="View\InspectCodeRunnerView.xaml.cs">
       <DependentUpon>InspectCodeRunnerView.xaml</DependentUpon>
@@ -107,11 +110,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\TraceOutputControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\InspectCodeRunnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

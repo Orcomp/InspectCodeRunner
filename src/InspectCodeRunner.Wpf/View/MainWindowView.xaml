@@ -1,0 +1,38 @@
+﻿<catel:Window x:Class="InspectCodeRunner.Wpf.View.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:catel="http://catel.codeplex.com"
+        xmlns:view="clr-namespace:InspectCodeRunner.Wpf.View"
+        xmlns:controls="clr-namespace:InspectCodeRunner.Wpf.Controls"
+        Title="InspectCode runner" Height="600" Width="700">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <view:InspectCodeRunnerView Grid.Row="0" DataContext="{Binding InspectCodeRunnerSettings}"/>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Width="64" Height="64" ToolTip="Run" Command="{Binding Run}">
+                <Image Source="/Orchestra.Shell.TaskRunner;component/Resources/Images/Run.png" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" />
+            </Button>
+
+        </Grid>
+        <GroupBox Grid.Row="2" Header="Results">
+            <controls:TraceOutputControl x:Name="traceOutputControl"/>
+        </GroupBox>
+    </Grid>
+</catel:Window>

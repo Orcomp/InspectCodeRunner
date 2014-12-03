@@ -31,6 +31,8 @@
         /// </summary>
         private readonly IDispatcherService _dispatcherService;
 
+        private string _filter;
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceOutputViewModel" /> class.
@@ -123,8 +125,20 @@
         /// Gets or sets the filter.
         /// </summary>
         /// <value>The filter.</value>
-        public string Filter { get; set; }
-
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (value == _filter)
+                {
+                    return;
+                }
+                _filter = value;
+                RaisePropertyChanged(() => Filter);
+                OnFilterChanged();
+            }
+        }
         #endregion
 
         #region Commands

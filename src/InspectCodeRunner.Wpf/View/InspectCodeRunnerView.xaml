@@ -65,6 +65,6 @@ Example:<LineBreak />
                 <TextBox Margin="12 3 0 3" Height="25" Grid.Row="1" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
             </Grid>
         </Expander>
-        <controls:TraceOutputControl x:Name="traceOutputControl" Height="150"/>
+        <controls:TraceOutputControl x:Name="traceOutputControl" Height="250"/>
     </StackPanel>
 </UserControl>

@@ -14,6 +14,7 @@ namespace InspectCodeRunner.Wpf.ViewModels
     {
         private string _solutionFile;
         private string _outputResultDirectory;
+        private bool _isInspectCodeExpanded;
 
         public string SolutionFile
         {
@@ -33,6 +34,20 @@ namespace InspectCodeRunner.Wpf.ViewModels
         {
             var projectFolder = Path.GetParentDirectory(Path.GetParentDirectory(solutionFilePath));
             return Path.Combine(projectFolder, @"output\InspectCode\InspectCodeResult.xml");
+        }
+
+        public bool IsInspectCodeExpanded
+        {
+            get { return _isInspectCodeExpanded; }
+            set
+            {
+                if (value.Equals(_isInspectCodeExpanded))
+                {
+                    return;
+                }
+                _isInspectCodeExpanded = value;
+                RaisePropertyChanged(() => IsInspectCodeExpanded);
+            }
         }
 
         public string InspectCodeLocation { get; set; }

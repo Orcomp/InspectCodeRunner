@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:orchestra="https://github.com/orcomp/orchestra"
+        xmlns:catel="http://catel.codeplex.com"
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
     <StackPanel>
-        <Grid>
+        <Grid Margin="0,0,15,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="*"/>
@@ -20,14 +21,27 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Solution File"/>
             <orchestra:FilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="InspectCode.exe path"/>
-            <orchestra:FilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-            <Label Grid.Row="2" Grid.Column="0">
-                <Label.Content>
-                    <TextBlock TextDecorations="Underline">Run parameters</TextBlock>
-                </Label.Content>
-                <Label.ToolTip>
-                    <TextBlock TextWrapping="Wrap" Width="600">
+            <Label Grid.Row="1" Grid.Column="0" Content="Output:"/>
+            <orchestra:FilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        </Grid>
+        <Expander Margin="5 0 0 0" Header="InspectCode.exe configuration" IsExpanded="{Binding IsInspectCodeExpanded, Converter={catel:BooleanToCollapsingVisibilityConverter}}">
+            <Grid Margin="0,0,15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="InspectCode.exe path"/>
+                <orchestra:FilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <Label Grid.Row="1" Grid.Column="0">
+                    <Label.Content>
+                        <TextBlock TextDecorations="Underline">Run parameters</TextBlock>
+                    </Label.Content>
+                    <Label.ToolTip>
+                        <TextBlock TextWrapping="Wrap" Width="600">
   /config : Path to configuration file where parameters are specified (use 'config-create' option to create sample file).<LineBreak /> 
   /config-create : Write command line parameters to specified file.<LineBreak /> 
   /output (/o) : Write inspections report to specified file.<LineBreak /> 
@@ -44,12 +58,11 @@
   /dumpIssuesTypes (/it) : Dump issues types (default: False).<LineBreak /> 
 Example:<LineBreak /> 
   InspectCode.exe /caches-home="C:\Temp\DFCache" /o="report.xml" "C:\src\MySolution.sln"<LineBreak />
-                    </TextBlock>
-                </Label.ToolTip>
-            </Label>
-            <TextBox Margin="12 3 0 3" Grid.Row="2" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
-            <Label Grid.Row="3" Grid.Column="0" Content="Output:"/>
-            <orchestra:FilePickerView Grid.Row="3" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-        </Grid>
+                        </TextBlock>
+                    </Label.ToolTip>
+                </Label>
+                <TextBox Margin="12 3 0 3" Height="25" Grid.Row="1" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
+            </Grid>
+        </Expander>
     </StackPanel>
 </UserControl>

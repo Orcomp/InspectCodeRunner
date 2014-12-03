@@ -76,6 +76,10 @@ namespace InspectCodeRunner.Wpf.Services
             _inspectCodeRunnerSettings.InspectCodeLocation = _configurationService.GetValue<string>("InspectCodeLocation");
             _inspectCodeRunnerSettings.InspectCodeParameters =
                 _configurationService.GetValue("InspectCodeParameters", @"");
+            if (string.IsNullOrEmpty(_inspectCodeRunnerSettings.InspectCodeLocation))
+            {
+                _inspectCodeRunnerSettings.IsInspectCodeExpanded = true;
+            }
         }
 
 

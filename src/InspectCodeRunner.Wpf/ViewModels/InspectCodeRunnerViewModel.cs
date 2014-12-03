@@ -13,8 +13,8 @@ namespace InspectCodeRunner.Wpf.ViewModels
     public class InspectCodeRunnerViewModel : ViewModelBase
     {
         private string _solutionFile;
-        private string _outputResultDirectory;
-        private bool _isInspectCodeExpanded;
+        private string _outputResultPath;
+        private bool _isInspectCodeExpanded = true;
 
         public string SolutionFile
         {
@@ -26,7 +26,7 @@ namespace InspectCodeRunner.Wpf.ViewModels
                     _solutionFile = value;
                     RaisePropertyChanged(() => SolutionFile);
                 }
-                OutputResultDirectory = GetOutputResultPath(_solutionFile);
+                OutputResultPath = GetOutputResultPath(_solutionFile);
             }
         }
 
@@ -54,17 +54,19 @@ namespace InspectCodeRunner.Wpf.ViewModels
 
         public string InspectCodeParameters { get; set; }
 
-        public string OutputResultDirectory
+        public string InspectCodeResultViewer { get; set; }
+
+        public string OutputResultPath
         {
-            get { return _outputResultDirectory; }
+            get { return _outputResultPath; }
             set
             {
-                if (value == _outputResultDirectory)
+                if (value == _outputResultPath)
                 {
                     return;
                 }
-                _outputResultDirectory = value;
-                RaisePropertyChanged(() => OutputResultDirectory);
+                _outputResultPath = value;
+                RaisePropertyChanged(() => OutputResultPath);
             }
         }
     }

@@ -18,11 +18,23 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Width="64" Height="35" ToolTip="Run" Command="{Binding Run}">
-                <Image Source="/Orchestra.Shell.TaskRunner;component/Resources/Images/Run.png" 
+            <Button Grid.Column="1" Height="35" Margin="5" Padding="5 0" ToolTip="Run" Command="{Binding Run}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Orchestra.Shell.TaskRunner;component/Resources/Images/Run.png" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" />
+                    <TextBlock Text="Inspect code"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="2" Height="35" Margin="5" Padding="5 0" ToolTip="Run" Command="{Binding RunViewer}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Orchestra.Shell.TaskRunner;component/Resources/Images/Run.png" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" />
+                    <TextBlock Text="Run viewer"/>
+                </StackPanel>
             </Button>
 
         </Grid>

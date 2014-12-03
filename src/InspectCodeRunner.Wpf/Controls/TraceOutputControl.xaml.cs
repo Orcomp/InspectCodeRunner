@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace InspectCodeRunner.Wpf.Controls
+﻿namespace InspectCodeRunner.Wpf.Controls
 {
     using System.Linq;
     using System.Windows;
-    using Catel.Windows.Controls;
     using Catel.MVVM.Views;
     using Catel.Logging;
+    using Catel.Windows.Controls;
+    using TraceOutputViewModel = ViewModels.TraceOutputViewModel;
 
     /// <summary>
     /// Interaction logic for TraceOutputControl.xaml

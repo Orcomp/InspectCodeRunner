@@ -27,12 +27,6 @@
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <Label Content="Details: " />
-                <ComboBox ItemsSource="{Binding Levels}" SelectedValue="{Binding SelectedLevel}" Width="100" />
-
-                <Button Command="{Binding ClearOutput}" Style="{DynamicResource SmallImageButtonStyle}" ToolTip="Clear output">
-                    <Image Source="/Catel.Extensions.Controls;component/Resources/Images/ClearOutput.png"
-                           Width="16" Height="16" Stretch="UniformToFill"/>
-                </Button>
             </StackPanel>
 
             <catel:WatermarkTextBox Grid.Column="1" Text="{Binding Filter}" Watermark="Filter">
@@ -80,26 +74,11 @@
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="" Width="27">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ContentControl Content="{Binding LogEvent, Converter={StaticResource OutputTypeConverter}}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
+                    
                     <GridViewColumn Header="Time">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Time}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Level" Width="75">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding LogEvent}" />
+                                <TextBlock Text="{Binding Time, StringFormat=G}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

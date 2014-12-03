@@ -7,14 +7,50 @@
 
 namespace InspectCodeRunner.Wpf.ViewModels
 {
+    using Catel.IO;
     using Catel.MVVM;
 
     public class InspectCodeRunnerViewModel : ViewModelBase
     {
-        public string SolutionFile { get; set; }
+        private string _solutionFile;
+        private string _outputResultDirectory;
+
+        public string SolutionFile
+        {
+            get { return _solutionFile; }
+            set
+            {
+                if (_solutionFile != value)
+                {
+                    _solutionFile = value;
+                    RaisePropertyChanged(() => SolutionFile);
+                }
+                OutputResultDirectory = GetOutputResultPath(_solutionFile);
+            }
+        }
+
+        private string GetOutputResultPath(string solutionFilePath)
+        {
+            var projectFolder = Path.GetParentDirectory(Path.GetParentDirectory(solutionFilePath));
+            return Path.Combine(projectFolder, @"output\InspectCode\InspectCodeResult.xml");
+        }
+
         public string InspectCodeLocation { get; set; }
 
         public string InspectCodeParameters { get; set; }
-        public string OutputResultDirectory { get; set; }
+
+        public string OutputResultDirectory
+        {
+            get { return _outputResultDirectory; }
+            set
+            {
+                if (value == _outputResultDirectory)
+                {
+                    return;
+                }
+                _outputResultDirectory = value;
+                RaisePropertyChanged(() => OutputResultDirectory);
+            }
+        }
     }
 }

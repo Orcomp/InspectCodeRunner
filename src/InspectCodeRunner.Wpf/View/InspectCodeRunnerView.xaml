@@ -50,7 +50,7 @@ Example:<LineBreak />
             </Label>
             <TextBox Margin="12 3 0 3" Grid.Row="2" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
             <Label Grid.Row="3" Grid.Column="0" Content="Output:"/>
-            <orchestra:DirectoryPickerView Grid.Row="3" Grid.Column="1" LabelWidth="0" SelectedDirectory="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+            <orchestra:FilePickerView Grid.Row="3" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding OutputResultDirectory, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
         </Grid>
     </StackPanel>
 </UserControl>

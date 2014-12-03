@@ -70,23 +70,19 @@ namespace InspectCodeRunner.Wpf.Services
         {
             _configurationService.SetValue("InspectCodeLocation", _inspectCodeRunnerSettings.InspectCodeLocation);
             _configurationService.SetValue("InspectCodeParameters", _inspectCodeRunnerSettings.InspectCodeParameters);
-            _configurationService.SetValue("OutputResultDirectory", _inspectCodeRunnerSettings.OutputResultDirectory);
         }
         private void LoadSettings()
         {
             _inspectCodeRunnerSettings.InspectCodeLocation = _configurationService.GetValue<string>("InspectCodeLocation");
             _inspectCodeRunnerSettings.InspectCodeParameters =
                 _configurationService.GetValue<string>("InspectCodeParameters", @"/output=");
-            _inspectCodeRunnerSettings.OutputResultDirectory =
-                _configurationService.GetValue<string>("OutputResultDirectory", @"c:\temp");
         }
 
 
         private void RunInspectCode()
         {
-            var outputPath = Path.Combine(_inspectCodeRunnerSettings.OutputResultDirectory, "InspectCodeResult.xml");
-            var arguments = _inspectCodeRunnerSettings.SolutionFile + " " + _inspectCodeRunnerSettings.InspectCodeParameters + outputPath;
-
+            var arguments = _inspectCodeRunnerSettings.SolutionFile + " " + _inspectCodeRunnerSettings.InspectCodeParameters + _inspectCodeRunnerSettings.OutputResultDirectory;
+            Directory.CreateDirectory(Path.GetParentDirectory(_inspectCodeRunnerSettings.OutputResultDirectory));
             StartProcess(_inspectCodeRunnerSettings.InspectCodeLocation, arguments);
         }
 
@@ -104,8 +100,8 @@ namespace InspectCodeRunner.Wpf.Services
                 Arguments = argumentsString,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 CreateNoWindow = true,
-
             };
 
             var workingDirectory = Path.GetDirectoryName(fileName);
@@ -114,12 +110,19 @@ namespace InspectCodeRunner.Wpf.Services
                 processStartInfo.WorkingDirectory = workingDirectory;
             }
 
-            var process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            while (!process.StandardOutput.EndOfStream)
+            using (var process = new Process())
             {
-                Log.Info(process.StandardOutput.ReadLine());
+                process.StartInfo = processStartInfo;
+                process.EnableRaisingEvents = true;
+                process.OutputDataReceived += (_, e) => Log.Info(e.Data);
+                process.ErrorDataReceived += (_, e) => Log.Error(e.Data);
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+//                while (!process.StandardOutput.EndOfStream)
+//                {
+//                    Log.Info(process.StandardOutput.ReadLine());
+//                }
             }
         }
 

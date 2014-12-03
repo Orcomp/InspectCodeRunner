@@ -38,7 +38,6 @@
   /disable-settings-layers (/dsl) : Disable specified settings layers. Possible values: GlobalAll, GlobalPerProduct, SolutionShared, SolutionPersonal, ProjectShared, ProjectPersonal.<LineBreak /> 
   /caches-home : Path to the directory where produced caches will be stored.<LineBreak /> 
   /debug (/d) : Show debugging messages (default: False).<LineBreak /> 
-  /help (/h) : Show help and exit.<LineBreak /> 
   /version (/v) : Show tool version and exit.<LineBreak /> 
   /eXtensions (/x) : Install and use specified extensions.<LineBreak /> 
   /properties : MSBuild properties.<LineBreak /> 

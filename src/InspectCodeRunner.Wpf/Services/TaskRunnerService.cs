@@ -75,13 +75,16 @@ namespace InspectCodeRunner.Wpf.Services
         {
             _inspectCodeRunnerSettings.InspectCodeLocation = _configurationService.GetValue<string>("InspectCodeLocation");
             _inspectCodeRunnerSettings.InspectCodeParameters =
-                _configurationService.GetValue<string>("InspectCodeParameters", @"/output=");
+                _configurationService.GetValue("InspectCodeParameters", @"");
         }
 
 
         private void RunInspectCode()
         {
-            var arguments = _inspectCodeRunnerSettings.SolutionFile + " " + _inspectCodeRunnerSettings.InspectCodeParameters + _inspectCodeRunnerSettings.OutputResultDirectory;
+            var arguments = string.Format("{0} /output={1} {2}",
+                _inspectCodeRunnerSettings.SolutionFile,
+                _inspectCodeRunnerSettings.OutputResultDirectory,
+                _inspectCodeRunnerSettings.InspectCodeParameters);
             Directory.CreateDirectory(Path.GetParentDirectory(_inspectCodeRunnerSettings.OutputResultDirectory));
             StartProcess(_inspectCodeRunnerSettings.InspectCodeLocation, arguments);
         }
@@ -119,10 +122,6 @@ namespace InspectCodeRunner.Wpf.Services
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
-//                while (!process.StandardOutput.EndOfStream)
-//                {
-//                    Log.Info(process.StandardOutput.ReadLine());
-//                }
             }
         }
 

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:orchestra="https://github.com/orcomp/orchestra"
         xmlns:catel="http://catel.codeplex.com"
+        xmlns:controls="clr-namespace:InspectCodeRunner.Wpf.Controls"
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
     <StackPanel>
@@ -64,5 +65,6 @@ Example:<LineBreak />
                 <TextBox Margin="12 3 0 3" Height="25" Grid.Row="1" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
             </Grid>
         </Expander>
+        <controls:TraceOutputControl x:Name="traceOutputControl" Height="150"/>
     </StackPanel>
 </UserControl>

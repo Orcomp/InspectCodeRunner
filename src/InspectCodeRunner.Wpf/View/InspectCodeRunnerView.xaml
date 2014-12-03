@@ -7,15 +7,23 @@
         xmlns:catel="http://catel.codeplex.com"
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
+    <catel:UserControl.Resources>
+        <Style TargetType="{x:Type orchestra:FilePickerView}">
+            <Style.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Height" Value="22"/>
+                    <Setter Property="Margin" Value="2"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </catel:UserControl.Resources>
     <StackPanel>
-        <Grid Margin="0,0,15,0">
+        <Grid Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>

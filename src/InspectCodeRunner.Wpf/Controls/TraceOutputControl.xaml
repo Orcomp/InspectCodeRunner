@@ -80,7 +80,7 @@
             <ListView.View>
                 <GridView>
                     
-                    <GridViewColumn Width="600">
+                    <GridViewColumn Width="520">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Message}" FontFamily="Courier New" TextWrapping="Wrap"/>

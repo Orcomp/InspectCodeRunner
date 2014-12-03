@@ -4,7 +4,7 @@
         xmlns:catel="http://catel.codeplex.com"
         xmlns:view="clr-namespace:InspectCodeRunner.Wpf.View"
         xmlns:controls="clr-namespace:InspectCodeRunner.Wpf.Controls"
-        Title="InspectCode runner" Height="600" Width="700">
+        Title="InspectCode runner" Height="600" Width="600">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -12,11 +12,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
 
         <view:InspectCodeRunnerView Grid.Row="0" DataContext="{Binding InspectCodeRunnerSettings}"/>
         <Grid Grid.Row="1" >
@@ -25,7 +20,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Width="64" Height="64" ToolTip="Run" Command="{Binding Run}">
+            <Button Grid.Column="1" Width="64" Height="35" ToolTip="Run" Command="{Binding Run}">
                 <Image Source="/Orchestra.Shell.TaskRunner;component/Resources/Images/Run.png" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" />
             </Button>

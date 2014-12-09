@@ -8,7 +8,7 @@
         mc:Ignorable="d" x:Class="InspectCodeRunner.Wpf.View.InspectCodeRunnerView"
         d:DesignWidth="450" d:DesignHeight="300">
     <catel:UserControl.Resources>
-        <Style TargetType="{x:Type orchestra:FilePickerView}">
+        <Style TargetType="{x:Type orchestra:OpenFilePickerView}">
             <Style.Resources>
                 <Style TargetType="{x:Type TextBox}">
                     <Setter Property="Height" Value="22"/>
@@ -28,7 +28,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Solution File"/>
-            <orchestra:FilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+            <orchestra:OpenFilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Output:"/>
             <orchestra:SaveFilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" Filter="Xml files (*.xml)|*.xml" SelectedFile="{Binding OutputResultPath, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
         </Grid>
@@ -44,7 +44,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="InspectCode.exe path"/>
-                <orchestra:FilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <orchestra:OpenFilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeLocation, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
                 <Label Grid.Row="1" Grid.Column="0">
                     <Label.Content>
                         <TextBlock TextDecorations="Underline">Run parameters</TextBlock>
@@ -72,7 +72,7 @@ Example:<LineBreak />
                 </Label>
                 <TextBox Margin="2 3 0 3" Height="22" Grid.Row="1" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
                 <Label Grid.Row="2" Grid.Column="0" Content="Result Viewer path"/>
-                <orchestra:FilePickerView Grid.Row="2" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeResultViewer, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <orchestra:OpenFilePickerView Grid.Row="2" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeResultViewer, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
             </Grid>
         </Expander>
     </StackPanel>

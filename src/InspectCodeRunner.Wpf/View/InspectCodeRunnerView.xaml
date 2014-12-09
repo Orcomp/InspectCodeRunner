@@ -30,7 +30,7 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Solution File"/>
             <orchestra:FilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Output:"/>
-            <orchestra:FilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding OutputResultPath, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+            <orchestra:SaveFilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" Filter="Xml files (*.xml)|*.xml" SelectedFile="{Binding OutputResultPath, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
         </Grid>
         <Expander Margin="0 0 0 0" Header="InspectCode.exe configuration" IsExpanded="{Binding IsInspectCodeExpanded, Converter={catel:BooleanToCollapsingVisibilityConverter}}">
             <Grid>

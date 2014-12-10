@@ -16,6 +16,14 @@
                 </Style>
             </Style.Resources>
         </Style>
+        <Style TargetType="{x:Type orchestra:SaveFilePickerView}">
+            <Style.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Height" Value="22"/>
+                    <Setter Property="Margin" Value="2"/>
+                </Style>
+            </Style.Resources>
+        </Style>
     </catel:UserControl.Resources>
     <StackPanel>
         <Grid Margin="0,0,0,0">
@@ -27,10 +35,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Solution File"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="Solution File:"/>
             <orchestra:OpenFilePickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding SolutionFile, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Output:"/>
-            <orchestra:SaveFilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" Filter="Xml files (*.xml)|*.xml" SelectedFile="{Binding OutputResultPath, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+            <orchestra:SaveFilePickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" Filter="Xml files (*.xml)|*.xml" SelectedFile="{Binding OutputResultPath, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Margin="0,0,0,10"/>
         </Grid>
         <Expander Margin="0 0 0 0" Header="InspectCode.exe configuration" IsExpanded="{Binding IsInspectCodeExpanded, Converter={catel:BooleanToCollapsingVisibilityConverter}}">
             <Grid>

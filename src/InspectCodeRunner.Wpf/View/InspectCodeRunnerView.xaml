@@ -79,8 +79,6 @@ Example:<LineBreak />
                     </Label.ToolTip>
                 </Label>
                 <TextBox Margin="2 3 0 3" Height="22" Grid.Row="1" Grid.Column="1" Text="{Binding InspectCodeParameters}" />
-                <Label Grid.Row="2" Grid.Column="0" Content="Result Viewer path"/>
-                <orchestra:OpenFilePickerView Grid.Row="2" Grid.Column="1" LabelWidth="0" SelectedFile="{Binding InspectCodeResultViewer, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
             </Grid>
         </Expander>
     </StackPanel>

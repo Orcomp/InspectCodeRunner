@@ -14,6 +14,7 @@ namespace InspectCodeRunner.Wpf.ViewModels
     {
         private string _solutionFile;
         private string _outputResultPath;
+        private string _htmlReportPath;
         private bool _isInspectCodeExpanded = true;
 
         public string SolutionFile
@@ -27,6 +28,7 @@ namespace InspectCodeRunner.Wpf.ViewModels
                     RaisePropertyChanged(() => SolutionFile);
                 }
                 OutputResultPath = GetOutputResultPath(_solutionFile);
+                HtmlReportPath = GetHtmlReportPath(_solutionFile);
             }
         }
 
@@ -34,6 +36,12 @@ namespace InspectCodeRunner.Wpf.ViewModels
         {
             var projectFolder = Path.GetParentDirectory(Path.GetParentDirectory(solutionFilePath));
             return Path.Combine(projectFolder, @"output\InspectCode\InspectCodeResult.xml");
+        }
+
+        private string GetHtmlReportPath(string solutionFilePath)
+        {
+            var projectFolder = Path.GetParentDirectory(Path.GetParentDirectory(solutionFilePath));
+            return Path.Combine(projectFolder, @"output\InspectCode\InspectCodeResult.html");
         }
 
         public bool IsInspectCodeExpanded
@@ -54,8 +62,6 @@ namespace InspectCodeRunner.Wpf.ViewModels
 
         public string InspectCodeParameters { get; set; }
 
-        public string InspectCodeResultViewer { get; set; }
-
         public string OutputResultPath
         {
             get { return _outputResultPath; }
@@ -69,5 +75,20 @@ namespace InspectCodeRunner.Wpf.ViewModels
                 RaisePropertyChanged(() => OutputResultPath);
             }
         }
+
+        public string HtmlReportPath
+        {
+            get { return _htmlReportPath; }
+            set
+            {
+                if (value == _htmlReportPath)
+                {
+                    return;
+                }
+                _htmlReportPath = value;
+                RaisePropertyChanged(() => HtmlReportPath);
+            }
+        }
+
     }
 }

@@ -29,11 +29,11 @@
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="2" Height="35" Margin="5" Padding="5 0" ToolTip="Run" Command="{Binding RunViewer}">
+            <Button Grid.Column="2" Height="35" Margin="5" Padding="5 0" ToolTip="Run" Command="{Binding OpenReport}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Orchestra.Shell.TaskRunner;component/Resources/Images/Run.png" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" />
-                    <TextBlock Text="Run viewer"/>
+                    <TextBlock Text="Open report"/>
                 </StackPanel>
             </Button>
 

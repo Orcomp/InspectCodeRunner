@@ -3,7 +3,10 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Threading.Tasks;
     using System.Windows;
+    using System.Xml;
+    using System.Xml.Xsl;
     using Catel;
     using Catel.IoC;
     using Catel.Logging;
@@ -28,7 +31,14 @@
             }
         }
 
-        public void Run(string fileName, string arguments)
+        public async Task TransformToHtmlReport(string inspectResultPath, string htmlReportPath)
+        {
+            var xslTrans = new XslCompiledTransform();
+            xslTrans.Load(@"Resources/InspectCodeResult.xslt");
+            xslTrans.Transform(inspectResultPath, htmlReportPath);
+        }
+
+        public async Task Run(string fileName, string arguments)
         {
             ResetLog();
             StartProcess(fileName, arguments);
@@ -67,6 +77,7 @@
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
+                process.WaitForExit();
             }
         }
 

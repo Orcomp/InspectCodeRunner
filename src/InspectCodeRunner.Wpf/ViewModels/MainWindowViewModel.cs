@@ -1,5 +1,6 @@
 ﻿namespace InspectCodeRunner.Wpf.ViewModels
 {
+    using System.Threading.Tasks;
     using Catel;
     using Catel.Configuration;
     using Catel.IO;
@@ -31,7 +32,6 @@
             var result = new InspectCodeRunnerViewModel();
             result.InspectCodeLocation = _configurationService.GetValue<string>("InspectCodeLocation");
             result.InspectCodeParameters = _configurationService.GetValue("InspectCodeParameters", @"");
-            result.InspectCodeResultViewer = _configurationService.GetValue("InspectCodeResultViewer", @"");
             if (string.IsNullOrEmpty(result.InspectCodeLocation))
             {
                 result.IsInspectCodeExpanded = true;
@@ -44,7 +44,6 @@
         {
             _configurationService.SetValue("InspectCodeLocation", InspectCodeRunnerSettings.InspectCodeLocation);
             _configurationService.SetValue("InspectCodeParameters", InspectCodeRunnerSettings.InspectCodeParameters);
-            _configurationService.SetValue("InspectCodeResultViewer", InspectCodeRunnerSettings.InspectCodeResultViewer);
         }
 
         #region Run command
@@ -67,31 +66,36 @@
 
             _inspectCodeRunnerService.CreateDirectoryIfNotExists(
                 Path.GetParentDirectory(InspectCodeRunnerSettings.OutputResultPath));
-            _inspectCodeRunnerService.Run(InspectCodeRunnerSettings.InspectCodeLocation, arguments);
+
+            await Task.Factory.StartNew(() =>
+            {
+                _inspectCodeRunnerService.Run(InspectCodeRunnerSettings.InspectCodeLocation, arguments);
+                _inspectCodeRunnerService.TransformToHtmlReport(InspectCodeRunnerSettings.OutputResultPath, InspectCodeRunnerSettings.HtmlReportPath);
+            });
 
             SaveSettings();
         }
 
         #endregion
 
-        #region RunViewer command
+        #region OpenReport command
 
-        private Command _runViewerCommand;
+        private Command _openReportCommand;
 
         /// <summary>
-        /// Gets the RunViewer command.
+        /// Gets the OpenReport command.
         /// </summary>
-        public Command RunViewer
+        public Command OpenReport
         {
-            get { return _runViewerCommand ?? (_runViewerCommand = new Command(ExecuteRunViewer)); }
+            get { return _openReportCommand ?? (_openReportCommand = new Command(ExecuteOpenReport)); }
         }
 
         /// <summary>
-        /// Method to invoke when the RunViewer command is executed.
+        /// Method to invoke when the OpenReport command is executed.
         /// </summary>
-        private void ExecuteRunViewer()
+        private void ExecuteOpenReport()
         {
-            _processService.StartProcess(InspectCodeRunnerSettings.InspectCodeResultViewer, InspectCodeRunnerSettings.OutputResultPath);
+            _processService.StartProcess(InspectCodeRunnerSettings.HtmlReportPath);
         }
 
         #endregion

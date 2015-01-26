@@ -9,8 +9,21 @@
             <head>
                 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
                 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
+                <style>
+                    #top-link-block.affix-top {
+                        position: absolute; /* allows it to "slide" up into view */
+                        bottom: -82px; /* negative of the offset - height of link element */
+                        right: 20px; /* padding from the left side of the window */
+                    }
+                    #top-link-block.affix {
+                        position: fixed; /* keeps it on the bottom once in view */
+                        bottom: 18px; /* height of link element */
+                        right: 20px; /* padding from the left side of the window */
+                    }
+                </style>
             </head>
             <body>
+                <a name="top"></a>
                 <div class="container">
                     <div class="page-header">
                         <h1>
@@ -259,6 +272,19 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </div>
+                <span id="top-link-block" >
+                    <a href="#top" class="well well-sm">
+                        <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
+                    </a>
+                </span>
+                <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+                <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+                <script>
+                    $('#top-link-block').removeClass('hidden').affix({
+                        // how far to scroll down before link "slides" into view
+                        offset: {top:100}
+                    });
+                </script>
             </body>
         </html>
     </xsl:template>
